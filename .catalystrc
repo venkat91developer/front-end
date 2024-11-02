@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "9777000000008001",
+      "name": "Venkat-DSA-FrontEnd",
+      "domain": {
+        "id": "50022610846",
+        "name": "venkat-dsa-frontend-60033336785.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60033336785",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
