@@ -1,0 +1,149 @@
+$borderRadius: 10px;
+$spacer: 1rem;
+$primaryColor: #406ff3;
+$textColor: #6a778e;
+$linkHeight: $spacer * 3.5;
+$timing: 250ms;
+$transition: $timing ease all;
+
+body {
+  background: #eaeef6;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+  position: fixed;
+  top: $spacer;
+  left: $spacer;
+  background: #fff;
+  border-radius: $borderRadius;
+  padding: $spacer 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0);
+  height: calc(100vh - #{$spacer * 4});
+  overflow: hidden;
+
+  &__toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $primaryColor; // Circle color
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute; // Positioning the toggle button
+    top: 20px; // Adjust as needed
+    left: 20px; // Adjust as needed
+    transition: background-color $timing;
+    color: #fff;
+    &:hover {
+      background-color: darken($primaryColor, 10%); // Darker shade on hover
+    }
+  }
+
+  &__menu {
+    list-style: none; // Remove bullet points
+    padding: 0;      // Remove default padding
+    margin: 0;       // Remove default margin
+    max-height: 0;   // Collapsed by default
+    overflow: hidden; // Prevent overflow
+    transition: max-height $timing ease; // Smooth transition for height
+
+    &.expanded {
+      max-height: 500px; // Adjust as needed to fit content
+      display: block; // Show when expanded
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    &:hover {
+      & > .navbar__link {
+        background: #0054e9;
+        border-radius: 10px;
+        width: 4.5rem;
+        text-align: center;
+        color: #fff; // Change text color on hover
+      }
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $linkHeight;
+    width: $spacer * 5.5;
+    color: $textColor;
+    transition: color $timing;
+
+    span {
+      position: absolute;
+      left: 100%;
+      transform: translate(-#{$spacer * 3});
+      margin-left: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      color: $primaryColor;
+      background: #fff;
+      padding: $spacer * 0.75;
+      transition: opacity $timing, transform $timing;
+      border-radius: $borderRadius * 1.75;
+    }
+
+    &:hover {
+      color: #fff;
+
+      span {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+  }
+}
+.collapse{
+  height: 60px;
+  background: rgba(0, 0, 0, 0);
+    top: 85%;
+}
+.disabled{
+  opacity: 0.5;
+}
+
+/* Tooltip Container */
+.navbar__item {
+  position: relative;
+}
+
+.navbar__item[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%; /* Position above the item */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Tooltip Arrow */
+.navbar__item[title]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 90%; /* Adjust to match tooltip position */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+  z-index: 10;
+}
